@@ -7,11 +7,18 @@ const bookStore = [
 
 const cart = [];
 
+
 function showAvailableBooks() {
-    console.log("\nAvailable Books:");
+    let bookIndex=1;
+    console.log(`Available Books:
++-----+-----------+--------+------------+---------+
+| ID  |   Name    |  Price |    Status  | Quantity |
++-----+-----------+--------+------------+---------+`);
     bookStore.forEach(book => {
-        console.log(`${book.name} - Price: $${book.price} - Status: ${book.status} - Quantity: ${book.quantity}`);
+        console.log(`|  ${bookIndex}   |  ${book.name}   |  $${book.price}   |  ${book.status} |     ${book.quantity}   |`);
+        bookIndex++;
     });
+    console.log(`+-----+-----------+----------+----------+----------+`);
 }
 
 function addBookToCart(bookIndex, quantity) {
@@ -30,9 +37,9 @@ function addBookToCart(bookIndex, quantity) {
         });
 
         console.log(`\n"${selectedBook.name}" added to the cart.`);
-    } else {
-        console.log(`\nUnable to add "${selectedBook.name}" to the cart. Please check availability and quantity.`);
-    }
+    }// else {
+    //     console.log(`\nUnable to add "${selectedBook.name}" to the cart. Please check availability and quantity.`);
+    // }
 }
 
 function showCart() {
