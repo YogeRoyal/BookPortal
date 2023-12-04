@@ -1,4 +1,4 @@
-//Program to Store and maintain Books in an Object
+//show available books to users,add book,show cart
 
 const readline = require("readline-sync");
 
