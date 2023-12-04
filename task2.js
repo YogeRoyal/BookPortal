@@ -24,10 +24,14 @@ function showAvailableBooks() {
 | ID  |   Name    |  Price |    Status  | Quantity |
 +-----+-----------+--------+------------+---------+`);
     bookStore.forEach(book => {
+        if(book.quantity==0){
+            book.status="unavailable"
+        }
         console.log(`|  ${bookIndex}   |  ${book.name}   |  $${book.price}   |  ${book.status} |     ${book.quantity}   |`);
         bookIndex++;
     });
     console.log(`+-----+-----------+----------+----------+----------+`);
+
 }
 
 function addBookToCart(bookIndex, quantity) {
