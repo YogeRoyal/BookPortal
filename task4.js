@@ -1,12 +1,12 @@
-// Task2
-// show available books :-
-// 	here after each operation whenever user want to see available books..show them list with latest quantity...once quantity reaches 0 change status to unavailable	
-	
-// add book -->
-// 	now you have to ask quantity as well...& pass that quantity to cart list with book details & update booklists entry quantity accordingly	
-	
-// show cart -->
-//	here now you have to calculate price of book according to quantity of each book & also calculate total cart value & display book name, price, quantity, total price & at last line total cart value
+
+// 3rd task :-
+
+// add book --> 
+// 	here while taking quantity you have to check 
+//     if that much quantity is available or not --> 
+//     if available directly add to cart ---> 
+//     else show one message for available quantity --> & take new quantity
+
 const readline = require("readline-sync");
 const bookStore = [
     { name: "Book1", price: 10, status: "available", quantity: 5 },
@@ -18,14 +18,19 @@ const cart = [];
 
 
 function showAvailableBooks() {
-    let bookIndex=1;
+    let bookIndex = 1;
     console.log(`Available Books:
 +-----+-----------+--------+------------+---------+
 | ID  |   Name    |  Price |    Status  | Quantity |
 +-----+-----------+--------+------------+---------+`);
     bookStore.forEach(book => {
-        console.log(`|  ${bookIndex}   |  ${book.name}   |  $${book.price}   |  ${book.status} |     ${book.quantity}   |`);
-        bookIndex++;
+        if (book.quantity == 0) {
+            book.status = "unavailable"
+        }
+        if (book.quantity != 0) {
+            console.log(`|  ${bookIndex}   |  ${book.name}   |  $${book.price}   |  ${book.status} |     ${book.quantity}   |`);
+            bookIndex++;
+        }
     });
     console.log(`+-----+-----------+----------+----------+----------+`);
 }
@@ -46,9 +51,13 @@ function addBookToCart(bookIndex, quantity) {
         });
 
         console.log(`\n"${selectedBook.name}" added to the cart.`);
-    }// else {
-    //     console.log(`\nUnable to add "${selectedBook.name}" to the cart. Please check availability and quantity.`);
-    // }
+    } else {
+        console.log(`\nUnable to add "${selectedBook.name}" to the cart. Please check availability and quantity.`);
+        let newquantity = readline.questionInt("Please,Enter new quantity of book: ");
+
+        addBookToCart(bookIndex, newquantity)
+
+    }
 }
 
 function showCart() {
@@ -74,7 +83,7 @@ while (choice != 4) {
             let bookIndex = readline.questionInt("Add Book in cart by entering book Id: ")
             let quantity = readline.questionInt("Add the quantity of book: ")
 
-            addBookToCart(bookIndex-1, quantity)
+            addBookToCart(bookIndex - 1, quantity)
             showAvailableBooks()
             break;
         case 3:
