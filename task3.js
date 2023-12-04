@@ -19,7 +19,7 @@ const cart = [];
 
 function showAvailableBooks() {
     let bookIndex=1;
-    console.log(`Available Books:
+    console.log(`
 +-----+-----------+--------+------------+---------+
 | ID  |   Name    |  Price |    Status  | Quantity |
 +-----+-----------+--------+------------+---------+`);
