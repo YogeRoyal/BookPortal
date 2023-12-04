@@ -1,3 +1,15 @@
+// Task1
+//show available books to users --> 
+// 	here you have to show all list items
+	
+// add book --> 
+// 	here you have to take i/p from user to add book in cart --> that i/p can be index no of book from that list --> for this you have to maintain one list as cart & you have to add this book in that list --> while adding that book in list you have to pass quantity as 1 
+// 	-- once you add that book cart you have to update the quantity in book list -- like you have to decrease the quantity by one & update the same in list 
+	
+// show cart -->
+// 	here you just have to show the cart list which you are creating while adding book	
+	
+
 const readline = require("readline-sync");
 
 const bookStore = [
@@ -7,18 +19,21 @@ const bookStore = [
 ];
 
 const cart = [];
-let bookIndex = 1
+
 function showAvailableBooks() {
+    let bookIndex=1;
     console.log(`Available Books:
-+----+--------------------+-------+----------+
-| ID |        Name        | Price | Quantity |
-+----+--------------------+-------+----------+`);
-    bookStore.forEach(ele => {
-        console.log(`| ${bookIndex}  |        ${ele.name}       |  $${ele.price}  |     ${ele.quantity}   |`);
-        bookIndex++
++-----+-----------+--------+------------+---------+
+| ID  |   Name    |  Price |    Status  | Quantity |
++-----+-----------+--------+------------+---------+`);
+    bookStore.forEach(book => {
+        console.log(`|  ${bookIndex}   |  ${book.name}   |  $${book.price}   |  ${book.status} |     ${book.quantity}   |`);
+        bookIndex++;
     });
-    console.log(`+----+--------------------+-------+----------+`);
+    console.log(`+-----+-----------+----------+----------+----------+`);
 }
+
+
 
 function addBookToCart(bookIndex, quantity) {
     const selectedBook = bookStore[bookIndex];
